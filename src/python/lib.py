@@ -95,7 +95,8 @@ def BasisFunction(basisUserNumber, numOfXi, option, collapsed):
         cubicBasis.QuadratureLocalFaceGaussEvaluateSet(True)
         cubicBasis.CreateFinish()
         # Output for diagnostics
-        print( "----> Set up tricubic hermite basis function for geometry and trilinear for hydrostatic pressure <----\n" )        return quadBasis, cubicBasis
+        print( "----> Set up tricubic hermite basis function for geometry and trilinear for hydrostatic pressure <----\n" )
+        return quadBasis, cubicBasis
 
 
 #=================================================================================#
