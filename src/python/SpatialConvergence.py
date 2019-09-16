@@ -25,19 +25,19 @@ trans_elems = [2,4,8,16]
 try:
     fidr = open('LVInflation.py', 'r')
 except IOError:
-    print 'ERROR: Unable to open LVInflation.py'
+    print( 'ERROR: Unable to open LVInflation.py' )
     quit()
 
 for i in range(0, len(trans_elems)):
     for j in range(0, len(circ_elems)):
         elems = [circ_elems[j], circ_elems[j], trans_elems[i]]
-        print '++++++++++++++++++++++++++++++++++++++++++++++++++++++\n'
-        print '    Solving for '+str(elems)+' elements\n'
-        print '++++++++++++++++++++++++++++++++++++++++++++++++++++++\n'
+        print( '++++++++++++++++++++++++++++++++++++++++++++++++++++++\n' )
+        print( '    Solving for '+str(elems)+' elements\n' )
+        print( '++++++++++++++++++++++++++++++++++++++++++++++++++++++\n' )
 
         # Rewrite python file
         filenamew = 'LVInflation_'+str(elems[0])+'-'+str(elems[1])+'-'+str(elems[2])+'.py'
-        print filenamew
+        print( filenamew )
 
         RewritePythonScript('LVInflation.py', filenamew, elems)
 
