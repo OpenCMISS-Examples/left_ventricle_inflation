@@ -272,8 +272,8 @@ for j in range(0,1):
         increm = pressure_increments[i]
         p = p + increm
         tol = tolerances[i]
-        print 'Applying pressure increment of: ', increm, ' using ', iters, ' iterations'
-        print 'Current pressure is: ', p
+        print( 'Applying pressure increment of: ', increm, ' using ', iters, ' iterations' )
+        print( 'Current pressure is: ', p )
         [problem, solverEquations] = ProblemSolverSetup(equationsSet, problemUserNumber, iters, tol, cellMLOption)
         BCEndoPressure(solverEquations, dependentField, endocardial_nodes, increm, basal_nodes, option)
 
