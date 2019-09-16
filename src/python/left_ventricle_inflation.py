@@ -70,6 +70,8 @@ from collections import OrderedDict
 from lib import *
 from numpy import array
 
+path=os.path.dirname(os.path.abspath(__file__))
+
 ### Set problem parameters3
 numOfXi = 3
 option = [1] # Trilinear
@@ -245,7 +247,7 @@ equationsSetSpecification = [iron.EquationsSetClasses.ELASTICITY,
 equationsSet.CreateStart(equationsSetUserNumber, region, fibreField, equationsSetSpecification,
                          equationsSetFieldUserNumber, equationsSetField)
 equationsSet.CreateFinish()
-print "----> Set up equations set <---\n"
+print("----> Set up equations set <---\n")
 
 # Set up material field in equations set.
 equationsSet.MaterialsCreateStart(materialFieldUserNumber, materialField)
