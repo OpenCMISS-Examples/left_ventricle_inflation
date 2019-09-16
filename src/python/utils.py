@@ -7,7 +7,7 @@ def RewritePythonScript(filenamer, filenamew, elems):
         fidr = open(filenamer, 'r')
         fidw = open(filenamew, 'w')
     except IOError:
-        print 'ERROR: Problem with reading or writing python scripts'
+        print( 'ERROR: Problem with reading or writing python scripts' )
         return
 
     n = 0
