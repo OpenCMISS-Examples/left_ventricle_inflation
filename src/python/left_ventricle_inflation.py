@@ -142,7 +142,7 @@ for elem in inputElems.elements:
             if (elem.number >= apex_elems[i-1][0]) & (elem.number <= apex_elems[i-1][1]):
                 linearElem.BasisSet(elem.number, colBasis)
                 nodes = list(OrderedDict.fromkeys(elem.nodes))
-                nodes = map(int, nodes)
+                nodes = list(map(int, nodes))
                 linearElem.NodesSet(elem.number, nodes)
             else:
                 linearElem.NodesSet(elem.number, elem.nodes)

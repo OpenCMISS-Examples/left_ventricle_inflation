@@ -292,7 +292,7 @@ class ExnodeSection(object):
         while read < self.num_node_values:
             line = f.readline()
             try:
-                new_values = map(float, line.split())
+                new_values = list( map(float, line.split()))
             except ValueError:
                 raise ExfileError(f, "Expecting node values, got: %s" % line.strip())
             if read + len(list(new_values)) > self.num_node_values:
@@ -462,7 +462,7 @@ class Exelem(object):
         element_line = f.readline()
         if element_line == "":
             raise EOFError
-        indices = map(int, element_line.split(':')[1].split())
+        indices = list(map(int, element_line.split(':')[1].split()))
         if indices[1] == 0 and indices[2] == 0:
             # raise ExfileError(f, "Face or line elements not supported")
             values = []
