@@ -125,7 +125,7 @@ class Exregion(object):
         if element_line == "":
             raise EOFError
         try:
-            indices = map(int, element_line.split(':')[1].split())
+            indices = list(map(int, element_line.split(':')[1].split()))
         except:
             print( element_line)
             raise
@@ -136,7 +136,7 @@ class Exregion(object):
                 expect_line(f, "Values:")
                 while len(values) < self.num_element_values:
                     line = f.readline()
-                    values.extend(map(float, line.split()))
+                    values.extend(list(map(float, line.split())))
     
 #Ignore faces, lines
             nodes = []   
@@ -149,7 +149,7 @@ class Exregion(object):
                 match = re.search(regex, element_line)
             while len(nodes) < self.num_nodes:
                 line = f.readline()
-                nodes.extend(map(int, line.split()))
+                nodes.extend(list(map(int, line.split())))
     
             scale_factors = []
             element_line = f.readline()
@@ -157,7 +157,7 @@ class Exregion(object):
             if re.search(regex, element_line) is not None: 
                 while len(scale_factors) < self.num_scale_factors:
                     line = f.readline()
-                    scale_factors.extend(map(float, line.split()))
+                    scale_factors.extend(list(map(float, line.split())))
             else:
                 f.rollback()
             
@@ -292,7 +292,7 @@ class ExnodeSection(object):
         while read < self.num_node_values:
             line = f.readline()
             try:
-                new_values = list( map(float, line.split()))
+                new_values = list( list(map(float, line.split())))
             except ValueError:
                 raise ExfileError(f, "Expecting node values, got: %s" % line.strip())
             if read + len(list(new_values)) > self.num_node_values:
@@ -470,19 +470,19 @@ class Exelem(object):
                 expect_line(f, "Values:")
                 while len(values) < self.num_element_values:
                     line = f.readline()
-                    values.extend(map(float, line.split()))
+                    values.extend(list(map(float, line.split())))
     
             expect_line(f, "Nodes:")
             nodes = []
             while len(nodes) < self.num_nodes:
                 line = f.readline()
-                nodes.extend(map(int, line.split()))
+                nodes.extend(list(map(int, line.split())))
     
             expect_line(f, "Scale factors:")
             scale_factors = []
             while len(scale_factors) < self.num_scale_factors:
                 line = f.readline()
-                scale_factors.extend(map(float, line.split()))
+                scale_factors.extend(list(map(float, line.split())))
     
             self.elements.append(
                     ExelemElement(indices, nodes, values, scale_factors))
@@ -559,15 +559,15 @@ class ExelemComponent(object):
                     r'[0-9]+\.\s*#Values\s*=\s*([0-9]+)')
             value_indices_line = f.readline().strip()
             scale_factor_indices_line = f.readline().strip()
-            self.value_indices[node] = map(int,
-                    value_indices_line.split(':')[1].strip().split())
-            self.scale_factor_indices[node] = map(int,
-                    scale_factor_indices_line.split(':')[1].strip().split())
+            self.value_indices[node] = list(map(int,
+                    value_indices_line.split(':')[1].strip().split()))
+            self.scale_factor_indices[node] = list(map(int,
+                    scale_factor_indices_line.split(':')[1].strip().split()))
 
     def _read_grid_component(self, f):
         grids = f.readline()
         divisions = [d.strip().split('=')[1] for d in grids.split(',')]
-        self.divisions = map(int, divisions)
+        self.divisions = list(map(int, divisions))
 
     def __repr__(self):
         return '<ExnodeComponent, "%s": "%s">' % (
